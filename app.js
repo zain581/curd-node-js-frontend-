@@ -2,36 +2,28 @@ const express = require('express');
 const mongoose = require('mongoose');
 const User = require('./models/user');
 
-// express app
 const app = express();
 
-// connect to mongodb & listen for requests
 const dbURI = "paste here your mongodb uri that can be get form connect button";
 
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true }) //this return promise
   .then((result) =>{ console.log("Database-connected"); app.listen(8080)})
-  //after db connected than it will listen to port3000
   .catch(err => console.log(err)); //else errors will be shown
 
 
-// register view engine
+
 app.set('view engine', 'ejs');
  
-// middleware & static files
-app.use(express.static('public')); //this will helps to use style.css file
-app.use(express.urlencoded({ extended: true })); //this will helps to get submitted data of form in req.body obj
 
-
-
-// home routes
+app.use(express.static('public')); 
+app.use(express.urlencoded({ extended: true })); 
 app.get('/', (req, res) => {
-  res.redirect('/users'); //this will redirect page to /users
+  res.redirect('/users'); 
 });
 
-//users i.e index route
 app.get('/users',(req,res)=>{
   console.log("req made on"+req.url);
-   User.find().sort({createdAt:-1})//it will find all data and show it in descending order
+   User.find().sort({createdAt:-1})
     .then(result => { 
       res.render('index', { users: result ,title: 'Home' }); //it will then render index page along with users
     })
@@ -40,19 +32,18 @@ app.get('/users',(req,res)=>{
     });
 })
 
-//about route
+
 app.get('/about',(req,res)=>{
   console.log("req made on"+req.url);
   res.render('about',{title:'About'});
 })
 
-//route for user create
+
 app.get('/user/create',(req,res)=>{
   console.log("GET req made on"+req.url);
   res.render('adduser',{title:'Add-User'});
 })
 
-//route for users/withvar
 app.get('/users/:id', (req, res) => {
   const id = req.params.id;
   User.findById(id)
