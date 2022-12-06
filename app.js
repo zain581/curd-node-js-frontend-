@@ -8,7 +8,7 @@ const dbURI = "paste here your mongodb uri that can be get form connect button";
 
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true }) //this return promise
   .then((result) =>{ console.log("Database-connected"); app.listen(8080)})
-  .catch(err => console.log(err)); //else errors will be shown
+  .catch(err => console.log(err)); 
 
 
 
