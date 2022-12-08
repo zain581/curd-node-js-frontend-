@@ -54,8 +54,6 @@ app.get('/users/:id', (req, res) => {
       console.log(err);
     });
 });
-
-//route for edit/name/action variable that will display current value to input field
 app.get('/edit/:name/:action',(req,res)=>{
   const name = req.params.name;
   console.log("req made on"+req.url);
