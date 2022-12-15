@@ -70,10 +70,6 @@ app.get('/edit/:name/:action',(req,res)=>{
   console.log("POST req made on"+req.url);
   console.log("Form submitted to server");
 
-
-  /*Note: when you are passing form obj directly to collection using model you
-          have to give same name in form of that data that is to be passed in database 
-          and that name is declared inside schema*/
   const user = new User(req.body); //passing object of form data directly to collection
   user.save() //then saving this to database and this return promise
     .then(result => {
