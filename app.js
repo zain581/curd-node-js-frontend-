@@ -66,7 +66,6 @@ app.get('/edit/:name/:action',(req,res)=>{
     });
 })
 
-//submitting data routes
   app.post('/user/create',(req,res)=>{
   console.log("POST req made on"+req.url);
   console.log("Form submitted to server");
