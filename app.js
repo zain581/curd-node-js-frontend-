@@ -81,7 +81,7 @@ app.get('/edit/:name/:action',(req,res)=>{
 
 })
 
-//route for updating users data
+
 app.post('/edit/:id',(req,res)=>{
   console.log("POST req made on"+req.url);
   User.updateOne({_id:req.params.id},req.body) //then updating that user whose id is get from url 
