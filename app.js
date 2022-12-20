@@ -75,7 +75,7 @@ app.get('/edit/:name/:action',(req,res)=>{
     .then(result => {
       res.redirect('/users');//is success save this will redirect to home page
     })
-    .catch(err => { //if data not saved error showed
+    .catch(err => { 
       console.log(err);
     });
 
